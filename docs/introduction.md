@@ -1,4 +1,4 @@
-## What is Angular?
+## Angular 是什么
 
 - [Angular Github](https://github.com/angular/angular)
 - [Angular 官网](https://angular.io/)
