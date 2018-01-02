@@ -28,6 +28,27 @@ export class AppComponent {
 - `styleUrls`：引用外部 CSS 样式文件，这是一个数组，也就意味着可以引用多份 CSS 文件。
 - `export class AppComponent`：这是 ES6 里面引入的模块和 class 定义方式。
 
+
+
+## 组件的模板
+
+- 内联模板
+- 模板文件
+
+你可以在两种地方存放组件模板。 你可以使用`template`属性把它定义为*内联*的，或者把模板定义在一个独立的 HTML 文件中， 再通过`@Component`装饰器中的`templateUrl`属性， 在组件元数据中把它链接到组件。
+
+到底选择内联 HTML 还是独立 HTML 取决于个人喜好、具体状况和组织级策略。 上面的应用选择内联 HTML ，是因为模板很小，而且没有额外的 HTML 文件显得这个演示简单些。
+
+无论用哪种风格，模板数据绑定在访问组件属性方面都是完全一样的。
+
+> By default, the Angular CLI generates components with a template file. You can override that with:
+>
+> ```shell
+> ng generate component hero -it
+> ```
+
+
+
 ## 使用 SASS 预处理器
 
 SASS 是一款非常好用的 CSS 预编译器，Bootstrap 官方从4.0开始已经切换到了 SASS。
