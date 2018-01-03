@@ -56,7 +56,27 @@
 
 ## 事件处理
 
+```html
+<button (click)="onSave()">Save</button>
 
+<!-- 也可以这样 -->
+<button on-click="onSave()">On Save</button>
+
+<!-- 
+  绑定传参
+  $event 是事件源对象
+-->
+<button on-click="onSave($event)">On Save</button>
+
+<!-- 当事件处理语句比较简单的时候，我们可以内联事件处理语句 -->
+<button (click)="title = '哈哈哈'">内联事件处理</button>
+
+<!-- 双向数据绑定 -->
+<input [value]="currentHero.name"
+       (input)="currentHero.name=$event.target.value" >
+```
+
+> 注意：事件绑定处理函数必须调用，否则无效。
 
 ## 表单输入绑定
 
@@ -84,6 +104,17 @@
 
 ### NgClass 指令
 
+`NgClass` 指令接收一个对象，对象的 `key` 指定 css 类名，value 给定一个布尔值，当布尔值为真则作用该类名，当布尔值为假则移除给类名。
+
+```html
+<div [ngClass]="{
+  css类名: 布尔值,
+  css类名: 布尔值
+}">测试文本</div>
+```
+
+
+
 ### Style
 
 通过**样式绑定**，可以设置内联样式。
@@ -103,7 +134,29 @@
 <button [style.font-size.%]="!isSpecial ? 150 : 50" >Small</button>
 ```
 
+> 提示：*样式属性*命名方法可以用[中线命名法](https://angular.cn/guide/glossary#dash-case)，像上面的一样 也可以用[驼峰式命名法](https://angular.cn/guide/glossary#camelcase)，如`fontSize`。
+
 ### NgStyle 指令
+
+虽然这是设置单一样式的好办法，但我们通常更喜欢使用 [NgStyle指令](https://angular.cn/guide/template-syntax#ngStyle) 来同时设置多个内联样式。
+
+```typescript
+currentStyles: {};
+setCurrentStyles() {
+  // CSS styles: set per current state of component properties
+  this.currentStyles = {
+    'font-style':  this.canSave      ? 'italic' : 'normal',
+    'font-weight': !this.isUnchanged ? 'bold'   : 'normal',
+    'font-size':   this.isSpecial    ? '24px'   : '12px'
+  };
+}
+```
+
+```html
+<div [ngStyle]="currentStyles">
+  This div is initially italic, normal weight, and extra large (24px).
+</div>
+```
 
 
 
