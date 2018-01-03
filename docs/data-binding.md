@@ -22,6 +22,13 @@ Angular 自动从组件中提取 `title` 和 `myHero` 属性的值，并且把�
 
 ### 属性绑定
 
+```html
+<p title="{{ title }}">{{ title }}</p>
+
+<!-- 简写方式 -->
+<p [title]="title">{{ title }}</p>
+```
+
 ### 使用 JavaScript 表达式
 
 
@@ -60,6 +67,10 @@ export class AppComponent {
 ```html
 <p *ngIf="heroes.length > 3">There are many heroes!</p>
 ```
+
+## 事件绑定
+
+
 
 ## 小结
 
