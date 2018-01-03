@@ -48,37 +48,152 @@
 </ul>
 ```
 
-
-
 ## 列表渲染
+
+```typescript
+export class AppComponent {
+  heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
+}
+```
+
+```html
+<p>Heroes:</p>
+<ul>
+  <li *ngFor="let hero of heroes">
+    {{ hero }}
+  </li>
+</ul>
+```
+
+
 
 ## 条件渲染
 
+```html
+<p *ngIf="heroes.length > 3">There are many heroes!</p>
+```
+
+### `ngIf` 和 `<ng-template>`
+
+```html
+<ng-template [ngIf]="condition"><div>...</div></ng-template>
+```
+
+
+
 ## 事件处理
+
+使用 `on-` 前缀的方式：
+
+```html
+<!-- 绑定事件处理函数 -->
+<button on-click="onSave()">On Save</button>
+```
+
+也可以使用简写方式：
 
 ```html
 <button (click)="onSave()">Save</button>
-
-<!-- 也可以这样 -->
-<button on-click="onSave()">On Save</button>
-
-<!-- 
-  绑定传参
-  $event 是事件源对象
--->
-<button on-click="onSave($event)">On Save</button>
-
-<!-- 当事件处理语句比较简单的时候，我们可以内联事件处理语句 -->
-<button (click)="title = '哈哈哈'">内联事件处理</button>
-
-<!-- 双向数据绑定 -->
-<input [value]="currentHero.name"
-       (input)="currentHero.name=$event.target.value" >
 ```
 
-> 注意：事件绑定处理函数必须调用，否则无效。
+我们可以把事件对象传递到事件处理函数中：
+
+```html
+<button on-click="onSave($event)">On Save</button>
+```
+
+也可以传递额外的参数（取决于你的业务）：
+
+```html
+<button on-click="onSave($event, 123)">On Save</button>
+```
+
+当事件处理语句比较简单的时候，我们可以内联事件处理语句：
+
+```html
+<button (click)="message = '哈哈哈'">内联事件处理</button>
+```
+
+我们可以利用 **属性绑定 + 事件处理** 的方式实现表单文本框双向绑定：
+
+```html
+<input [value]="message"
+       (input)="message=$event.target.value" >
+```
+
+
 
 ## 表单输入绑定
+
+### 文本
+
+```html
+<p>{{ message }}</p>
+<input type="text" [(ngModel)]="message">
+```
+
+运行之后你会发现报错了，原因是使用 `ngModel` 必须导入 `FormsModule` 并把它添加到 Angular 模块的 `imports` 列表中。
+
+导入 `FormsModule` 并让 `[(ngModel)]` 可用的代码如下：
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
++++ import { FormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
++++ FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+```
+
+### 多行文本
+
+```html
+<textarea cols="30" rows="10" [(ngModel)]="message"></textarea>
+```
+
+
+
+### 复选框
+
+```html
+<h3>单选框</h3>
+<input type="checkbox" [(ngModel)]="seen">
+<div class="box" *ngIf="seen"></div>
+```
+
+###单选按钮
+
+```html
+<input type="radio" [value]="0" [(ngModel)]="gender"> 男
+<input type="radio" [value]="1" [(ngModel)]="gender"> 女
+<p>选中了：{{ gender }}</p>
+```
+
+
+
+###下拉列表 
+
+```html
+<select [(ngModel)]="hobby">
+  <option [value]="0">吃饭</option>
+  <option [value]="1">睡觉</option>
+  <option [value]="2">打豆豆</option>
+</select>
+<p>选中的爱好：{{ hobby }}</p>
+```
 
 ## Class 与 Style 绑定
 
@@ -158,7 +273,7 @@ setCurrentStyles() {
 </div>
 ```
 
-
+## Angular 中的计算属性
 
 ## 小结
 
