@@ -17,6 +17,16 @@
 
 ### What
 
+- [维基百科](https://zh.wikipedia.org/wiki/TypeScript)
+
+
+- [如何评价 TypeScript？](https://www.zhihu.com/question/21879449?sort=created)
+- [flow.js/typescript 这类定义参数类型的意义何在？](https://www.zhihu.com/question/28016252/answer/39056940)
+
+
+- Type + ECMAScript
+
+
 - 一种类似于 JavaScript 的语言，增强了 JavaScript
 - 遵循 EcmaScript 6 标准规范
 - 由微软开发
@@ -27,6 +37,9 @@
 - 作者是 C# 之父
 
 ### Why TypeScript
+
+- 大型团队
+
 
 - 遵循 EcmaScript 6
 - 强大的 IDE 支持
@@ -179,6 +192,9 @@ document.body.innerHTML = greeter(user);
 ## 变量声明
 
 ### `var`
+
+- 作用域
+- 重复声明
 
 ### `let`
 
@@ -339,6 +355,10 @@ let strLength: number = (someValue as string).length;
 
 两种形式是等价的。 至于使用哪个大多数情况下是凭个人喜好；然而，当你在TypeScript里使用JSX时，只有 `as`语法断言是被允许的。
 
+### 其它
+
+- `ReadonlyArray<T>` 去除了数组的所有可变方法，确保数组创建后再也不能被修改
+
 ## 接口
 
 TypeScript的核心原则之一是对值所具有的*结构*进行类型检查。 它有时被称做“鸭式辨型法”或“结构性子类型化”。 在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。
@@ -413,7 +433,10 @@ let p1: Point = { x: 10, y: 20 };
 p1.x = 5; // error!
 ```
 
+`readonly` vs `const`
 
+- 常量使用 const
+- 对象属性使用 readonly
 
 ## 解构赋值
 
@@ -550,24 +573,308 @@ function f ({a, b}: C): void {
 
 ### 基本示例
 
+```typescript
+class Person {
+    name: string;
+    age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    sayHello() {
+        console.log(this.name);
+    }
+}
+
+let zs: Person = new Person('张三', 18);
+
+```
+
+
+
 ### 构造函数
-
-### 示例成员
-
-### 静态方法
-
-### 静态属性和实例属性
 
 ### 继承
 
+```typescript
+class Animal {
+    move(distanceInMeters: number = 0) {
+        console.log(`Animal moved ${distanceInMeters}m.`);
+    }
+}
+
+class Dog extends Animal {
+    bark() {
+        console.log('Woof! Woof!');
+    }
+}
+
+const dog = new Dog();
+dog.bark();
+dog.move(10);
+dog.bark();
+```
+
+这个例子展示了最基本的继承：类从基类中继承了属性和方法。 这里， `Dog`是一个 *派生类*，它派生自 `Animal` *基类*，通过 `extends`关键字。 派生类通常被称作 *子类*，基类通常被称作 *超类*。
+
+因为 `Dog`继承了 `Animal`的功能，因此我们可以创建一个 `Dog`的实例，它能够 `bark()`和 `move()`。
+
+下面是一个更复杂的例子：
+
+```typescript
+class Animal {
+    name: string;
+    constructor(theName: string) { this.name = theName; }
+    move(distanceInMeters: number = 0) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+
+class Snake extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 5) {
+        console.log("Slithering...");
+        super.move(distanceInMeters);
+    }
+}
+
+class Horse extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 45) {
+        console.log("Galloping...");
+        super.move(distanceInMeters);
+    }
+}
+
+let sam = new Snake("Sammy the Python");
+let tom: Animal = new Horse("Tommy the Palomino");
+
+sam.move();
+tom.move(34);
+```
+
+与前一个例子的不同点是，派生类包含了一个构造函数，它 *必须*调用 `super()`，它会执行基类的构造函数。 而且，在构造函数里访问 `this`的属性之前，我们 *一定*要调用 `super()`。 这个是TypeScript强制执行的一条重要规则。
+
+这个例子演示了如何在子类里可以重写父类的方法。 `Snake`类和 `Horse`类都创建了 `move`方法，它们重写了从`Animal`继承来的 `move`方法，使得 `move`方法根据不同的类而具有不同的功能。 注意，即使 `tom`被声明为`Animal`类型，但因为它的值是 `Horse`，调用 `tom.move(34)`时，它会调用 `Horse`里重写的方法：
+
+```
+Slithering...
+Sammy the Python moved 5m.
+Galloping...
+Tommy the Palomino moved 34m.
+```
+
+### 实例成员访问修饰符
+
+#### `public` 开放的
+
+- 默认为 `public`
+
+```typescript
+class Animal {
+    public name: string;
+    public constructor(theName: string) { this.name = theName; }
+    public move(distanceInMeters: number) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+```
+
+#### `private` 私有的
+
+- 不能被外部访问，只能在类的内部访问使用
+- 私有成员不会被继承
+
+```typescript
+class Person {
+  public name: string;
+  public age: number = 18;
+  private type: string = 'human'
+  public constructor (name, age) {
+    this.name = name
+    this.age = age
+  }
+}
+```
+
+#### `protected` 受保护的
+
+- 和 `private` 类似，但是可以被继承
+
+```typescript
+class Person {
+    protected name: string;
+    constructor(name: string) { this.name = name; }
+}
+
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name)
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee("Howard", "Sales");
+console.log(howard.getElevatorPitch());
+console.log(howard.name); // 错误
+```
+
+注意，我们不能在 `Person`类外使用 `name`，但是我们仍然可以通过 `Employee`类的实例方法访问，因为`Employee`是由 `Person`派生而来的。
+
+#### `readonly` 只读的
+
+#### 在参数中使用修饰符
+
+在上面的例子中，我们不得不定义一个受保护的成员 `name`和一个构造函数参数 `theName`在 `Person`类里，并且立刻给 `name`和 `theName`赋值。 这种情况经常会遇到。 *参数属性*可以方便地让我们在一个地方定义并初始化一个成员。 
+
+```typescript
+class Person {
+  	name: string;
+  	age: number;
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+}
+```
+
+可以简写为：
+
+```typescript
+class Person {
+    constructor(public name: string, public age: number) {
+    }
+}
+```
+
+
+
+### 属性的存（get）取（set）器
+
+```typescript
+let passcode = "secret passcode";
+
+class Employee {
+  	// 私有成员，外部无法访问
+    private _fullName: string;
+
+  	// 当访问 实例.fullName 的时候会调用 get 方法
+    get fullName(): string {
+        return this._fullName;
+    }
+
+  	// 当对 实例.fullName = xxx 赋值的时候会调用 set 方法
+    set fullName(newName: string) {
+        if (passcode && passcode == "secret passcode") {
+            this._fullName = newName;
+        }
+        else {
+            console.log("Error: Unauthorized update of employee!");
+        }
+    }
+}
+
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    alert(employee.fullName);
+}
+```
+
+
+
+### 静态成员
+
+- 不需要实例化访问的成员称之为静态成员，即只能被类访问的成员
+- `static` 关键字
+
+```typescript
+class Grid {
+    static origin = {x: 0, y: 0};
+    calculateDistanceFromOrigin(point: {x: number; y: number;}) {
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    }
+    constructor (public scale: number) { }
+}
+
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
+
+console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+```
+
+
+
 ## 函数
 
-- 参数和返回值
-  - 类型
-  - 可选参数
-  - 默认参数
-  - 剩余参数
-- ​
+### 函数参数
+
+- 参数及返回值类型
+
+```typescript
+function add(x: number, y: number): number {
+    return x + y
+}
+```
+
+
+
+- 可选参数
+
+```typescript
+function add(x: number, y?: number): number {
+    return x + 10
+}
+```
+
+
+
+- 默认参数
+
+```typescript
+function add(x: number, y: number = 20): number {
+    return x + y
+}
+```
+
+
+
+- 剩余参数
+
+```typescript
+function sum(...args: number[]): number {
+    let ret: number = 0
+    args.forEach((item: number): void => {
+        ret += item
+    })
+    return ret
+}
+
+sum(1, 2, 3)
+```
+
+
+
+### 箭头函数
+
+- 基本示例
+
+```typescript
+let add = (x: number, y: number): number => x + y
+```
+
+
 
 ## for-of 循环
 
