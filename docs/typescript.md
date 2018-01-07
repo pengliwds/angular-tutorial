@@ -2,13 +2,9 @@
 - [TypeScript 官网](https://www.typescriptlang.org/)
 - [TypeScript 中文网](https://www.tslang.cn/)
 
-## 介绍
+## TypeScript 介绍
 
 ### 课程介绍
-
-- 学习 TypeScript 的好处
-- 安装 TypeScript 开发环境
-- TypeScript 概念、语法和特性介绍
 
 ### 你能学到什么
 
@@ -57,10 +53,9 @@
 - EcmaScript 6 编译器：`babel`
 - TypeScript 编译器：`typescript`
 - 一句话：把 TypeScript 转换为 JavaScript ，浏览器就具有运行了
-  - 在转换的过程中可以帮我们检测出代码中的很多低级错误
 - 在线测试编译环境 compiler
   - https://www.typescriptlang.org/play/index.html
-- 本地测试编译环境
+- 本地开发编译环境
 
 ```shell
 npm i -g typescript
@@ -72,14 +67,14 @@ tsc --version
 tsc --help
 ```
 
-### 不同的开发环境
+### 编辑器的选择
 
-- Webstorm
 - Visual Studio Code
 - Sublime
+- Webstorm
+- ...
 
-
-
+### Hello World
 
 
 
@@ -181,79 +176,6 @@ let user = new Student("Jane", "M.", "User");
 document.body.innerHTML = greeter(user);
 ```
 
-
-
-## 基本类型
-
-TypeScript 支持与 JavaScript 几乎相同的数据类型，此外还提供了实用的枚举类型方便我们使用。
-
-- boolean
-- number
-- string
-- 展开操作符
-  - 展开数组
-  - 展开对象
-
-### 布尔值
-
-```typescript
-let isDone: boolean = false;
-```
-
-### 数字
-
-```typescript
-let decLiteral: number = 6;
-```
-
-### 字符串
-
-- 类型
-- 模板字符串
-  - 支持换行
-  - 支持内嵌表达式
-- ​
-
-`string`表示文本数据类型。 和JavaScript一样，可以使用双引号（ `"`）或单引号（`'`）表示字符串。
-
-```typescript
-let name: string = "bob";
-name = "smith";
-```
-
-你还可以使用*模版字符串*，它可以定义多行文本和内嵌表达式。 这种字符串是被反引号包围，并且以`${ expr }`这种形式嵌入表达式
-
-```typescript
-let name: string = `Gene`;
-let age: number = 37;
-let sentence: string = `Hello, my name is ${ name }.
-
-I'll be ${ age + 1 } years old next month.`;
-```
-
-这与下面定义`sentence`的方式效果相同：
-
-```typescript
-let sentence: string = "Hello, my name is " + name + ".\n\n" +
-    "I'll be " + (age + 1) + " years old next month.";
-```
-
-### 数组
-
-TypeScript像JavaScript一样可以操作数组元素。 有两种方式可以定义数组。 第一种，可以在元素类型后面接上`[]`，表示由此类型元素组成的一个数组：
-
-```typescript
-let list: number[] = [1, 2, 3];
-```
-
-第二种方式是使用数组泛型，`Array<元素类型>`：
-
-```typescript
-let list: Array<number> = [1, 2, 3];
-```
-
-
-
 ## 变量声明
 
 ### `var`
@@ -273,6 +195,225 @@ let list: Array<number> = [1, 2, 3];
 ### `let` vs `const`
 
 使用[最小特权原则](https://en.wikipedia.org/wiki/Principle_of_least_privilege)，所有变量除了你计划去修改的都应该使用`const`。 基本原则就是如果一个变量不需要对它写入，那么其它使用这些代码的人也不能够写入它们，并且要思考为什么会需要对这些变量重新赋值。 使用 `const`也可以让我们更容易的推测数据的流动。
+
+## 基本数据类型
+
+### 布尔值
+
+```typescript
+let isDone: boolean = false;
+```
+
+### 数字
+
+```typescript
+let amount: number = 6;
+```
+
+### 字符串
+
+- 类型
+- 模板字符串
+  - 支持换行
+  - 支持内嵌表达式
+- 和 JavaScript 一样，可以使用双引号，也可以使用单引号，推荐单引号
+
+```typescript
+let nickname: string = '张三';
+```
+
+还可以使用模板字符串（换行 + 嵌入表达式）：
+
+```typescript
+let nickname: string = `Gene`;
+let age: number = 37;
+let sentence: string = `Hello, my nickname is ${ nickname }.
+
+I'll be ${ age + 1 } years old next month.`;
+```
+
+### 数组
+
+TypeScript像JavaScript一样可以操作数组元素。 有两种方式可以定义数组。 第一种，可以在元素类型后面接上`[]`，表示由此类型元素组成的一个数组：
+
+```typescript
+let list: number[] = [1, 2, 3];
+```
+
+第二种方式是使用数组泛型，`Array<元素类型>`：
+
+```typescript
+let list: Array<number> = [1, 2, 3];
+```
+
+### 元组
+
+元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为`string`和`number`类型的元组。
+
+```typescript
+// Declare a tuple type
+let x: [string, number];
+// Initialize it
+x = ['hello', 10]; // OK
+// Initialize it incorrectly
+x = [10, 'hello']; // Error
+```
+
+### Object
+
+- 允许赋任意值
+- 但是不能调用任意方法，即便它真的有
+
+```typescript
+let foo: Object = {
+  name: 'Jack',
+  age: 18
+}
+```
+
+> 知道即可，用的很少，没有类型校验和语法提示
+
+### Any
+
+有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 `any`类型来标记这些变量：
+
+```typescript
+let notSure: any = 4;
+notSure = "maybe a string instead";
+notSure = false; // okay, definitely a boolean
+```
+
+### Void
+
+`void`类型像是与`any`类型相反，它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 `void`：
+
+```typescript
+function warnUser(): void {
+  alert("This is my warning message");
+}
+```
+
+声明一个`void`类型的变量没有什么大用，因为你只能为它赋予`undefined`和`null`：
+
+```typescript
+let unusable: void = undefined;
+```
+
+### Null 和 Undefined
+
+和 `void`相似，它们的本身的类型用处不是很大：
+
+```typescript
+// Not much else we can assign to these variables!
+let u: undefined = undefined;
+let n: null = null;
+```
+
+默认情况下`null`和`undefined`是所有类型的子类型。 就是说你可以把 `null`和`undefined`赋值给`number`类型的变量。
+
+然而，当你指定了`--strictNullChecks` 标记，`null` 和 `undefined` 只能赋值给 `void` 和它们各自。 这能避免 *很多*常见的问题。许在某处你想传入一个 `string`或`null`或`undefined`，你可以使用联合类型`string | null | undefined`。
+
+> 注意：我们推荐尽可能地使用`--strictNullChecks` ，因为它使你的代码更严谨，可以极大的减少出错的几率。
+
+### 类型推断
+
+有时候你会遇到这样的情况，你会比TypeScript更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。
+
+通过*类型断言*这种方式可以告诉编译器，“相信我，我知道自己在干什么”。 类型断言好比其它语言里的类型转换，但是不进行特殊的数据检查和解构。 它没有运行时的影响，只是在编译阶段起作用。 TypeScript会假设你，程序员，已经进行了必须的检查。
+
+类型断言有两种形式。 其一是“尖括号”语法：
+
+```typescript
+let someValue: any = "this is a string";
+
+let strLength: number = (<string>someValue).length;
+```
+
+另一个为`as`语法：
+
+```typescript
+let someValue: any = "this is a string";
+
+let strLength: number = (someValue as string).length;
+```
+
+两种形式是等价的。 至于使用哪个大多数情况下是凭个人喜好；然而，当你在TypeScript里使用JSX时，只有 `as`语法断言是被允许的。
+
+## 接口
+
+TypeScript的核心原则之一是对值所具有的*结构*进行类型检查。 它有时被称做“鸭式辨型法”或“结构性子类型化”。 在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。
+
+### 基本示例
+
+```typescript
+function printLabel(labelledObj: { label: string }) {
+  console.log(labelledObj.label);
+}
+
+let myObj = { size: 10, label: "Size 10 Object" };
+printLabel(myObj);
+```
+
+类型检查器会查看`printLabel`的调用。 `printLabel`有一个参数，并要求这个对象参数有一个名为`label`类型为`string`的属性。 需要注意的是，我们传入的对象参数实际上会包含很多属性，但是编译器只会检查那些必需的属性是否存在，并且其类型是否匹配。 然而，有些时候TypeScript却并不会这么宽松，我们下面会稍做讲解。
+
+下面我们重写上面的例子，这次使用接口来描述：必须包含一个`label`属性且类型为`string`：
+
+```typescript
+interface LabelledValue {
+  label: string;
+}
+
+function printLabel(labelledObj: LabelledValue) {
+  console.log(labelledObj.label);
+}
+
+let myObj = {size: 10, label: "Size 10 Object"};
+printLabel(myObj);
+```
+
+### 可选属性
+
+接口里的属性不全都是必需的。 有些是只在某些条件下存在，或者根本不存在。 可选属性在应用“option bags”模式时很常用，即给函数传入的参数对象中只有部分属性赋值了。
+
+```typescript
+interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+
+function createSquare(config: SquareConfig): {color: string; area: number} {
+  let newSquare = {color: "white", area: 100};
+  if (config.color) {
+    newSquare.color = config.color;
+  }
+  if (config.width) {
+    newSquare.area = config.width * config.width;
+  }
+  return newSquare;
+}
+
+let mySquare = createSquare({color: "black"});
+```
+
+### 只读属性
+
+一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用 `readonly`来指定只读属性:
+
+```typescript
+interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+```
+
+你可以通过赋值一个对象字面量来构造一个`Point`。 赋值后， `x`和`y`再也不能被改变了。
+
+```typescript
+let p1: Point = { x: 10, y: 20 };
+p1.x = 5; // error!
+```
+
+
 
 ## 解构赋值
 
@@ -391,9 +532,7 @@ function keepWholeObject(wholeObject: { a: string, b?: number }) {
 - 展开对象
   - 不会展开方法
 
-### 函数声明
-
-解构赋值也可以用于函数声明：
+### 解构赋值用于函数声明
 
 ```typescript
 type C = {a: string, b?: number}
@@ -403,51 +542,17 @@ function f ({a, b}: C): void {
 }
 ```
 
-
-
-### 扩展运算符
-
-### 解构应用：模块按需加载
-
-
-
-## 接口（Interface）
-
-用来建立某种代码约定，使得其它开发者在调用某个方法或创建新的类时必须遵循接口所定义的代码规范。
-
-- 定义接口
-- 方法参数类型声明
-
-
-
-```typescript
-interface Animal {
-    eat()
-}
-
-class Sheep implements Animal {
-    eat() {
-        console.log('我吃草')
-    }
-}
-
-class Tiger implements Animal {
-    eat() {
-        console.log('我吃肉肉')
-    }
-}
-
-```
+### 解构赋值用于加载指定模块成员
 
 
 
 ## 类
 
-### 语法
+### 基本示例
 
 ### 构造函数
 
-### 私有方法和私有属性
+### 示例成员
 
 ### 静态方法
 
@@ -455,25 +560,14 @@ class Tiger implements Animal {
 
 ### 继承
 
-### Decorator 装饰器
-
-
-
-## 数组
-
-- 展开操作符
-  - 展开数组
-  - 展开对象
-
 ## 函数
 
-- 函数参数解构赋值
-
-- 函数的可选参数
-- 函数的默认参数
-- 函数的 REST 参数
-- 生成器函数
-- 箭头表达式
+- 参数和返回值
+  - 类型
+  - 可选参数
+  - 默认参数
+  - 剩余参数
+- ​
 
 ## for-of 循环
 
@@ -484,12 +578,6 @@ class Tiger implements Animal {
   - 会把数组当作对象来遍历
 - for of
   - 支持 break
-
-## 泛型（generic）
-
-参数化的类型，一般用来限制集合的类型。
-
-## 枚举
 
 ## 类型推断（Type Inference）
 
@@ -511,15 +599,13 @@ class Tiger implements Animal {
 
 ## 模块
 
-模块可以帮助开发者将代码分割为可重用的单元。
+### 概念
 
-开发者可以自己决定将模块中的哪些资源（类、方法、变量）暴露出去供外部使用，哪些资源只在模块内使用。
+### 模块通信：导出
 
+### 模块通信：导入
 
-
-## 注解（装饰器）
-
-注解为程序的元素（类、方法、变量）加上更直观更明了的说明，这些说明信息与程序的业务逻辑无关，而是供指定的工具或框架使用的。
+## 装饰器
 
 ## 类型定义文件（*.d.ts）
 
@@ -531,7 +617,3 @@ class Tiger implements Animal {
 - http://definitelytyped.org/
 
 ## 课程总结
-
-- 介绍了 TypeScript 的概念及优势
-- 如何搭建开发 TypeScript 开发环境
-- TypeScript 新语法及特性

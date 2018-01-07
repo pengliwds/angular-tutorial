@@ -4,5 +4,5 @@
 - [模板语法](template-syntax)
 - [指令](directive)
 - [组件](component)
-- [Typescropt](typescript)
+- [TypeScript](typescript)
 

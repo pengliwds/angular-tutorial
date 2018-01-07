@@ -4,6 +4,15 @@
 
 ## 组件（Components）
 
+- hello
+- world
+- 哈哈
+- 嘿嘿
+- 呵呵
+- 呼呼
+- 嘻嘻
+- 中文好强大
+
 ## 模板（Templates）
 
 ## 元数据（Metadata）
