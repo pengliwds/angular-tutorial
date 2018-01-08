@@ -1,8 +1,14 @@
-![ng-component](http://images.gitbook.cn/08a931a0-ae67-11e7-8003-dd1d9d56caa7)
+---
+typora-copy-images-to: media
+---
+
+![ng-component](./media/08a931a0-ae67-11e7-8003-dd1d9d56caa7.png)
 
 几乎所有前端框架都在玩“组件化”，而且最近都不约而同地选择了“标签化”这种思路，Angular 也不例外。
 
 对新版本的 Angular 来说，一切都是围绕着“组件化”展开的，组件是 Angular 的核心概念模型。
+
+![Component Tree](https://cn.vuejs.org/images/components.png)
 
 ## 组件的定义
 
@@ -37,57 +43,17 @@ export class AppComponent {
 
 你可以在两种地方存放组件模板。 你可以使用`template`属性把它定义为*内联*的，或者把模板定义在一个独立的 HTML 文件中， 再通过`@Component`装饰器中的`templateUrl`属性， 在组件元数据中把它链接到组件。
 
-到底选择内联 HTML 还是独立 HTML 取决于个人喜好、具体状况和组织级策略。 上面的应用选择内联 HTML ，是因为模板很小，而且没有额外的 HTML 文件显得这个演示简单些。
-
 无论用哪种风格，模板数据绑定在访问组件属性方面都是完全一样的。
 
-> By default, the Angular CLI generates components with a template file. You can override that with:
->
-> ```shell
-> ng generate component hero -it
-> ```
+具体模板语法请参考：[模板语法](#/template-syntax)
 
+## 组件通信
 
+## 组件声明周期
 
-## 使用 SASS 预处理器
+## 动态组件
 
-SASS 是一款非常好用的 CSS 预编译器，Bootstrap 官方从4.0开始已经切换到了 SASS。
+## 内容分发
 
-目前（2017-10），@angular/cli 创建项目的时候没有自动使用 SASS 作为预编译器，我们需要自己手动修改一些配置文件，请按照以下步骤依次修改：
-
-angular-cli.json 里面的 styles.css 后缀改成 .scss
-
-![dsa](http://images.gitbook.cn/d6b70580-ae68-11e7-8998-dde22b48a6a0)
-
-当你后面再使用 `ng g c ***` 自动创建组件的时候，默认就会生成 .scss 后缀的样式文件了。
-
-
-
-angular-cli.json 里面的 styleExt 改成 .scss
-
-![dsad](http://images.gitbook.cn/e8bfb880-ae68-11e7-9563-cf17984c2497)
-
-src 下面 style.css 改成 style.scss
-
-![dsa](http://images.gitbook.cn/ee3211a0-ae68-11e7-8998-dde22b48a6a0)
-
-app.component.scss
-
-![dsa](http://images.gitbook.cn/028db550-ae69-11e7-8003-dd1d9d56caa7)
-
-app.component.ts 里面对应修改
-
-![dsad](http://images.gitbook.cn/08488920-ae69-11e7-8e1f-796004dde17a)
-
-改完之后，重新 `ng serve`，打开浏览器查看效果。
-
-SASS 的 API 请参考[官方网站](http://sass-lang.com/)
-
-**SASS 只是一个预编译器，它支持所有 CSS 原生语法。利用 SASS 可以提升你的 CSS 编码效率，增强 CSS 代码的可维护性，但是千万不要幻想从此就可以不用学习 CSS 基础知识了。**
-
-
-
-## 组件的模板
-
-![dkjsabd](http://images.gitbook.cn/2f0f3730-ae81-11e7-9563-cf17984c2497)
+## 第三方组件库
 

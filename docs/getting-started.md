@@ -4,6 +4,8 @@ typora-copy-images-to: media
 
 ![“起步”的图片搜索结果](http://www.qykh2009.com/upload/editor/1430983078905.jpg)
 
+目前，无论你使用什么前端框架，都必然要使用到各种 NodeJS 工具，Angular 也不例外。与其它框架不同，Angular 从一开始就走的“全家桶”式的设计思路，因此 @angular/cli 这款工具里面集成了日常开发需要使用的所有 Node 模块，使用 @angular/cli 可以大幅度降低搭建开发环境的难度。
+
 ## 知识储备
 
 - HTML
@@ -121,19 +123,18 @@ ng new my-app
 
 ![1515415785055](media/1515415785055.png)
 
-**请注意：**
-
-- 这里是 `serve`，不是 server，我看到一些初学者经常坑在这个地方。
-- 如果你需要修改端口号，可以用 ng serve --port ****来进行指定。
-
 ## Step 3. Serve the application
 
 使用脚手架工具初始化项目完成之后，我们就可以启动开发模式了：
 
 ```shell
-# 注意：在项目根目录下执行
 ng serve
 ```
+
+**注意：**
+1. 在项目根目录下执行
+2. 看好是 `serve ` 不是 server
+3. 该命令默认会开启一个服务占用 4200 端口，如果想要修改可以通过 `--port` 参数来指定，例如 `ng serve --port 3000`
 
 ![1515415982150](media/1515415982150.png)
 
@@ -169,13 +170,7 @@ h1 {
 
 ![1515416751514](media/1515416751514.png)
 
-是不是很酷！
-
-![01DC2772.png](./media/01DC2772.png)![01DC2772.png](./media/01DC2772.png)![01DC2772.png](./media/01DC2772.png)
-
-
-
-
+是不是很酷！😂😂😂😂😂😂
 
 ## 一些常见的坑
 
@@ -183,7 +178,7 @@ h1 {
 
 对于国内的开发者来说，上面这些其实不是最重要的，国内开发者碰到的坑主要是由两点引起的：
 
-1. 第一点是网络问题：比如 node-sass 这个模块你很有可能就装不上，原因你懂的。
+1. 第一点是网络问题：比如 `node-sass` 这个模块你很有可能就装不上，原因你懂的。
 2. 第二点是开发环境导致的问题：国内使用 Windows 平台的开发者比例依然巨大，而 @angular/cli 在 Windows 平台上有一些非常恶心的依赖，比如它需要依赖 python 环境、Visual Studio 环境。
 
 所以，如果你的开发平台是 Windows，请特别注意：
@@ -196,7 +191,7 @@ h1 {
 
 
 
-## Visual Studio Code
+## 关于编辑器的选择
 
 如你所知，一直以来，前端开发领域并没有一款特别好用的开发和调试工具。
 
@@ -204,8 +199,6 @@ h1 {
 - Sublime Text 插件很多，可惜要收费，而国内的企业还没有养成花钱购买开发工具的习惯。
 - Chrome 的开发者工具很好用，但是要直接调试 TypeScript 很麻烦。
 
-所以，Visual Studio Code（简称 VS Code）才会呈现出爆炸性增长的趋势。它是微软开发的一款前端编辑器，完全[开源免费](https://github.com/Microsoft/vscode)。VS Code 底层是 Electron，界面本身是用 TypeScript 开发的。对于 Angular 开发者来说，当然要强烈推荐 VS Code。最值得一提的是，从1.14开始，可以直接在 VS Code 里面调试 TypeScript 代码。
+所以，Visual Studio Code（简称 VS Code）才会呈现出爆炸性增长的趋势。它是微软开发的一款编辑器，完全[开源免费](https://github.com/Microsoft/vscode)。VS Code 底层是 Electron，界面本身是用 TypeScript 开发的。对于 Angular 开发者来说，当然要强烈推荐 VS Code。最值得一提的是，从1.14开始，可以直接在 VS Code 里面调试 TypeScript 代码。
 
 ## 小结
-
-目前，无论你使用什么前端框架，都必然要使用到各种 NodeJS 工具，Angular 也不例外。与其它框架不同，Angular 从一开始就走的“全家桶”式的设计思路，因此 @angular/cli 这款工具里面集成了日常开发需要使用的所有 Node 模块，使用 @angular/cli 可以大幅度降低搭建开发环境的难度。
