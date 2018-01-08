@@ -1,24 +1,99 @@
+---
+typora-copy-images-to: media
+---
+
+![“起步”的图片搜索结果](http://www.qykh2009.com/upload/editor/1430983078905.jpg)
+
 ## 知识储备
 
 - HTML
 - CSS
 - JavaScript
+- EcmaScript 6
 - Typescript
+- 具有服务端开发经验更佳
 
-## Step 0. 环境依赖
+## Step 0. 安装依赖环境
 
-- Node
+### 安装 Node.js
 
-## Step1. 安装设置开发环境
+- 下载地址：https://nodejs.org/en/download/
+- 安装
+- 确认 Node.js 环境
+
+### 安装 npm
+
+- npm 会随着 Node 的安装被一起安装
+- 确认 npm 环境
+
+### 安装 Python
+
+- 下载地址：https://www.python.org/downloads/release/python-2714/
+- Windows 32 位：https://www.python.org/ftp/python/2.7.14/python-2.7.14.msi
+- Windows 64位：https://www.python.org/ftp/python/2.7.14/python-2.7.14.amd64.msi
+- 确认 Python 环境
+
+### 安装 C++ 编译工具
+
+`Angular CLi` 在 Windows 上同时依赖 C++ 编译工具，所以我们这里也需要单独安装。
+
+当然如果你的机器安装了 Visual Studio（注意，不是 Visual Studio Code）。
+
+执行下面的命名安装 C++ 编译工具：
+
+```shell
+npm install --global --production windows-build-tools
+```
+
+> 💡注意： Windows Vista / 7 依赖  [.NET Framework 4.5.1](http://www.microsoft.com/en-us/download/details.aspx?id=40773) 
+
+![Gif](https://cloud.githubusercontent.com/assets/1426799/15993939/2bbb470a-30aa-11e6-9cde-94c39b3f35cb.gif)
+
+### 安装 `cnpm`
+
+```shell
+npm i -g cnpm --registry=https://registry.npm.taobao.org
+```
+
+
+
+## Step1. 安装脚手架工具 `Angular CLI`
+
+[Angular CLI](https://cli.angular.io/) 是 Angular 官方开发的一个类似于 `Vue CLI` 的脚手架开发工具，它帮我们集成了 webpack 打包、开发服务器、单元测试、自动编译、部署等功能特性。
+
+使用它的第一步就是先安装：
 
 ```bash
-npm install -g @angular/cli
+cnpm i -g @angular/cli
 ```
+
+安装结束之后我们可以通过在命令行输入以下命令测试是否安装成功：
+
+```shell
+ng --version
+```
+
+```
+    _                      _                 ____ _     ___
+   / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+  / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+ / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+/_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+               |___/
+
+Angular CLI: 1.6.3
+Node: 8.9.4
+OS: win32 x64
+Angular:
+...
+```
+
+
 
 ### 安装失败解决方案
 
 - 在 Windows 平台上安装 @angular/cli 会报很多 error，那是因为 @angular/cli 在 Windows 平台上面依赖 Python 和 Visual Studio 环境，而很多开发者的机器上并没有安装这些东西
-- node-sass 模块被墙的问题，强烈推荐使用 cnpm 进行安装，可以非常有效地避免撞墙
+- 以及 node-sass 模块被墙的问题，强烈推荐使用 cnpm 进行安装，可以非常有效地避免撞墙
 
 ```shell
 npm i -g cnpm --registry=https://registry.npm.taobao.org
@@ -26,31 +101,25 @@ npm i -g cnpm --registry=https://registry.npm.taobao.org
 cnpm i -g @angular/cli
 ```
 
-- 如果安装失败，请手动把 node_modules 目录删掉重试一遍，全局的 @angular/cli 也需要删掉重装，cnpm uninstall -g @angular/cli
-- 如果 node_modules 删不掉，爆出路径过长之类的错误，请尝试用一些文件粉碎机之类的工具强行删除。
-- 无论你用什么开发环境，安装的过程中请仔细看 log。很多朋友没有看 log 的习惯，报错的时候直接懵掉，根本不知道发生了什么。
+- 如果安装失败，请手动把全局的 `@angular/cli` 删掉： `cnpm uninstall -g @angular/cli`
+- 如果 `node_modules` 删不掉，爆出路径过长之类的错误，请尝试用一些文件粉碎机之类的工具强行删除。
+- 无论你用什么开发环境，安装的过程中请仔细看错误日志。很多同学没有看错误日志的习惯，报错的时候直接懵掉，根本不知道发生了什么。
 
-## Setp 2. Create a new project
+## Setp 2. 使用脚手架工具初始化项目
 
 ```shell
 ng new my-app
 ```
 
-@angular/cli 将会自动帮你把目录结构创建好，并且会自动生成一些模板化的文件，就像这样：
+`Angular CLI` 将会自动帮你把目录结构创建好，并且会自动生成一些目录文件，就像这样：
 
-![dsa](http://images.gitbook.cn/5c3509d0-ae61-11e7-8998-dde22b48a6a0)
+![1515415495089](media/1515415495089.png)
 
-**请特别注意：**@angular/cli 在自动生成好项目骨架之后，会立即自动使用 npm 来安装所依赖的 Node 模块，所以这里我们要 Ctrl+C 终止掉，然后自己进入项目的根目录，使用 cnpm 来进行安装。
 
-![dsa](http://images.gitbook.cn/6f0c0950-ae61-11e7-8003-dd1d9d56caa7)
 
-安装完成之后，使用 ng serve 命令启动项目：
+**请特别注意：**`Angular CLI` 在自动生成好项目骨架之后，会立即自动使用 npm 来安装所依赖的 Node 模块，所以这里你懂的，一道墙又会阻止我们通往自由的道路，所以这里如果初始化很慢或者失败，请自己手动 `Ctrl + C` 终止掉，然后进入初始化好的项目根目录使用 `cnpm` 来安装。
 
-![dsadas](http://images.gitbook.cn/816eea40-ae61-11e7-8998-dde22b48a6a0)
-
-打开你的浏览器，访问默认的4200端口，看到以下界面说明环境 OK 了：
-
-![dsa](http://images.gitbook.cn/a6480d10-ae61-11e7-8e1f-796004dde17a)
+![1515415785055](media/1515415785055.png)
 
 **请注意：**
 
@@ -59,30 +128,34 @@ ng new my-app
 
 ## Step 3. Serve the application
 
+使用脚手架工具初始化项目完成之后，我们就可以启动开发模式了：
+
 ```shell
-cd my-app
-ng serve --open
+# 注意：在项目根目录下执行
+ng serve
 ```
 
-成功即可在浏览器中看到如下页面：
+![1515415982150](media/1515415982150.png)
 
-![starter](https://angular.io/generated/images/guide/cli-quickstart/app-works.png)
+接下来我们打开浏览器，访问：http://localhost:4200/ 。成功即可在浏览器中看到如下页面：
 
-## Step 4. Edit your first Angular component
+![1515416151290](media/1515416151290.png)
 
-The CLI created the first Angular component for you. This is the *root component* and it is named `app-root`. You can find it in `./src/app/app.component.ts`.
+## Step 4. 体验一下 Angular
 
-Open the component file and change the `title` property from *Welcome to app!!* to *Welcome to My First Angular App!!*:
+找到 `./src/app/app.component.ts` 文件，将 `AppComponent` 组件类中的 `title` 修改如下（记得保存哦）：
 
 ```javascript
 export class AppComponent {
-  title = 'My First Angular App';
+  title = '你的第一个 Angular 应用';
 }
 ```
 
-The browser reloads automatically with the revised title. That's nice, but it could look better.
+你会发现浏览器随之刷新：
 
-Open `src/app/app.component.css` and give the component some style.
+![1515416665906](media/1515416665906.png)
+
+标题样式太丑了，来让我们打开 `src/app/app.component.css` 文件并写入以下内容：
 
 ```css
 h1 {
@@ -91,6 +164,18 @@ h1 {
   font-size: 250%;
 }
 ```
+
+现在浏览器随之刷新变为了这样：
+
+![1515416751514](media/1515416751514.png)
+
+是不是很酷！
+
+![01DC2772.png](./media/01DC2772.png)![01DC2772.png](./media/01DC2772.png)![01DC2772.png](./media/01DC2772.png)
+
+
+
+
 
 ## 一些常见的坑
 
