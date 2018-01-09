@@ -1,61 +1,136 @@
-- [TypeScript Github](https://github.com/Microsoft/TypeScript)
-- [TypeScript 官网](https://www.typescriptlang.org/)
-- [TypeScript 中文网](https://www.tslang.cn/)
+---
+typora-copy-images-to: media
+---
+
+![1515492554669](media/1515492554669.png)
 
 ## TypeScript 介绍
 
-### 课程介绍
+### TypeScript 是什么
 
-### 你能学到什么
+![type+es6.png](./media/type+es6.png)
+
+TypeScript 是 JavaScript 的强类型版本。然后在编译期去掉类型和特有语法，生成纯粹的 JavaScript 代码。由于最终在浏览器中运行的仍然是 JavaScript，所以 TypeScript 并不依赖于浏览器的支持，也并不会带来兼容性问题。
+
+TypeScript 是 JavaScript 的超集，这意味着他支持所有的 JavaScript 语法。并在此之上对 JavaScript 添加了一些扩展，如 class / interface / module 等。这样会大大提升代码的可阅读性。
+
+和 JavaScript 若类型不同，TypeScript 这种强类型语言最大的优势在于静态类型检查，可以在代码开发阶段就预知一些低级错误的发生。
+
+- 一种类似于 JavaScript 的语言，在 JavaScript 的基础之上增加了类型，同时增强了 JavaScript 部分语法功能
+- 遵循 EcmaScript 6 标准规范
+- 由微软开发
+- Angular 2 框架采用 TypeScript 编写
+- 背后有微软和谷歌两大公司的支持
+- TypeScript 可以编译成 JavaScript 从而在支持 JavaScript 的环境中运行
+- TypeScript 和 JavaScript 的关系就好比 less 和 css 的关系
+
+
+
+### 静态类型和动态类型
+
+![静态和动态](./media/33328cd.jpg)
+
+静态（static）：无需运行，根据程序代码就能确定结果。
+
+动态（dynamic）：只有运行才能确定结果。
+
+类型：对某个数据所具有的性质进行的描述。如它的结构是怎样的，能进行什么操作。
+
+静态类型：数据拥有类型，且仅有数据拥有类型。
+
+动态类型：数据拥有类型，存放数据的变量、表达式也拥有类型，且类型在编译时是固定的。
+
+
+
+下图是静态语言和动态语言的比较：
+
+![0b68bbc8b230d957e25493e9e1bfada2_hd.jpg](./media/0b68bbc8b230d957e25493e9e1bfada2_hd.jpg)
+
+从表中可见，动态语言和静态语言各有优劣，而TypeScript提供了静态语言强类型支持，同时兼容动态语言弱类型的语法，使用者根据项目需求自由选择。
+
+这种动静结合的特性，目前还没在其他语言见过。
+
+### Why TypeScript
+
+- 从 Angular 2 之后，官方推荐使用 TypeScript 作为开发 Angular 应用的首选语言
+
+
+- 遵循 EcmaScript 6
+- 强大的 IDE 支持
+  - 类型检查
+  - 严谨的语法提示
+- 代码重构
+- 可读性良好
+
+
+
+### TypeScript 使用场景
+
+- 大型团队开发
+- Angular 官推语言
+- 其它...
+
+   这里引用知乎上一位开发者对使用推广 TypeScript 的看法：
+
+```
+typescript绝对是好东西，不过推广是有难度的：
+1、TS是微软制造，最好的开发工具是VS，想想有些人就激动了（什么vi流，sublime流，macbook流，虽然也能写ts，但你无法跟他们说用vs写有多么好）；
+
+2、即使你告诉他们TS有多好，但是几十人的团队里总有一半以上的人不想学新的东西（当然我没有权利说不学新东西的人应该全部滚动，因为互联网打工的是大爷，想跳槽随便找工作）；
+
+3、JSer很多没有学习OOP开发经验（特别是从设计／页面重构转过来的）；
+
+4、很多人接触TS前根本没学过JS，经常有人问“使用TS如何写元素拖拽”这样的问题（那是DOM API好伐，不过你跟初学者很难解释明白）；
+
+- 来源：知乎
+- 链接：https://www.zhihu.com/question/21879449
+- 作者：Fula Li
+```
+
+
+
+### TypeScript 不仅仅用于开发 Angular 应用
+
+> https://www.typescriptlang.org/samples/index.html
+
+- React
+- Angular
+- Node.js
+- Vue.js
+- WeChat
+- ...
+
+凡是可以写 JavaScript 的都可以使用 TypeScript。
 
 ### 前置知识
 
-- EcmaScript 5
 - EcmaScript 6
 - TypeScript 概念及关系
 - 具有一定的 JavaScript 开发经验
+- 有 Java、C#、C++、C 等静态类型语言使用经验更佳
 
-### What
 
-- [维基百科](https://zh.wikipedia.org/wiki/TypeScript)
+
+## 如何学习 TypeScript
+
+- 官方文档为准
+- 阅读别人的代码
+- 由于 TypeScript 是兼容 EcmaScript 6 的，所以在开发的时候不需要完全学会 TypeScript 再使用
+- 一个建议是有空就学，会了就用
+- 虽然兼容 EcmaScript 6，但建议既然使用了 TypeScript 就让你的 TypeScript 代码更加 TypeScript，这样才能发挥出 TypeScript 的威力。
+
+### 相关链接
+
+- [维基百科 - TypeScript](https://zh.wikipedia.org/wiki/TypeScript)
 
 
 - [如何评价 TypeScript？](https://www.zhihu.com/question/21879449?sort=created)
 - [flow.js/typescript 这类定义参数类型的意义何在？](https://www.zhihu.com/question/28016252/answer/39056940)
 
 
-- Type + ECMAScript
-
-
-- 一种类似于 JavaScript 的语言，增强了 JavaScript
-- 遵循 EcmaScript 6 标准规范
-- 由微软开发
-- Angular 2 框架采用 TypeScript 编写
-- 背后有微软和谷歌两大公司的支持
-- TypeScript 可以编译成 JavaScript 从而在支持 JavaScript 的环境中运行
-- 开源免费
-- 作者是 C# 之父
-
-### Why TypeScript
-
-- 大型团队
-
-
-- 遵循 EcmaScript 6
-- 强大的 IDE 支持
-  - 类型检查
-  - 语法提示
-- Angular 开发语言
-  - 从 Angular 2 之后
-  - 学习 TypeScript 有助于我们学习使用 Angular
-
-### How
-
-### 与其他框架/库配合
-
-- https://www.typescriptlang.org/samples/index.html
-
-### 一些资源
+- [TypeScript Github](https://github.com/Microsoft/TypeScript)
+- [TypeScript 官网](https://www.typescriptlang.org/)
+- [TypeScript 中文网](https://www.tslang.cn/)
 
 ## 起步
 
