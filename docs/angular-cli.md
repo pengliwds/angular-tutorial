@@ -1,4 +1,4 @@
-- [Angular CLI Github 仓库](https://github.com/angular/angular-cli)
+![illustration-home-inverted.91b07808be](./media/illustration-home-inverted.91b07808be.png)
 
 ## 安装
 
