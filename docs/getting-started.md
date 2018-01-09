@@ -128,6 +128,7 @@ ng new my-app
 使用脚手架工具初始化项目完成之后，我们就可以启动开发模式了：
 
 ```shell
+# 或者 npm start
 ng serve
 ```
 

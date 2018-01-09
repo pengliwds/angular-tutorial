@@ -73,3 +73,7 @@
 
 ## 自定义指令
 
+> 参考文档：
+>
+> - 属性型指令：https://angular.io/guide/attribute-directives
+> - 结构型指令：https://angular.io/guide/structural-directives
