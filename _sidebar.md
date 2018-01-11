@@ -8,7 +8,7 @@
 - [模板语法](template-syntax)
 - [指令](directive)
 - [表单处理](form)
-- [服务](service)
+- [和服务端交互](http)
 - [基础案例：TodoMVC](todomvc-angular)
 - [路由处理](router)
 - [综合案例](integrated-case)

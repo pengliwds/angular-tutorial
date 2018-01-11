@@ -1,5 +1,7 @@
 ![ng启动过程.png](./media/ng启动过程.png)
 
+> 参考文档：https://angular.io/guide/bootstrapping
+
 ## Angular CLI
 
 ## `.angular-cli.json` 文件

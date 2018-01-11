@@ -24,7 +24,7 @@ ng help
 ## 初始化项目
 
 ```shell
-ng new PROJECT-NAME
+ng new <项目名称>
 ```
 
 ## 启动开发服务
@@ -33,16 +33,19 @@ ng new PROJECT-NAME
 ng serve
 ```
 
-默认会占用 `4200` 端口号，支持参数修改：
+`ng serve` 默认占用 `4200` 端口号，可以通过下面选项配置：
 
 ```shell
-ng serve --host 0.0.0.0 --port 4201
+ng serve --port 4201
 ```
 
-## 生成组件，指令，过滤器和服务
+## 创建组件，指令，过滤器和服务
 
 ```shell
+# 创建组件
 ng generate component my-new-component
+
+# 创建组件别名
 ng g component my-new-component # using the alias
 
 # components support relative path generation
@@ -115,6 +118,21 @@ SASS 的 API 请参考[官方网站](http://sass-lang.com/) 。
 **SASS 只是一个预编译器，它支持所有 CSS 原生语法。利用 SASS 可以提升你的 CSS 编码效率，增强 CSS 代码的可维护性，但是千万不要幻想从此就可以不用学习 CSS 基础知识了。**
 
 ## 更新 Angular CLI
+
+## 其它
+
+### 切换包管理器
+
+```shell
+# 默认为 npm
+ng set --global packageManager=npm
+
+# 将包管理器设置为 yarn
+ng set --global packageManager=yarn
+
+# 将包管理器设置为 cnpm
+ng set --global packageManager=cnpm
+```
 
 ## 详细参考文档
 
