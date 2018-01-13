@@ -1,19 +1,20 @@
----
-typora-copy-images-to: media
----
+> 内容纲要
+>   - 安装 Angular CLI 开发工具
+>   - 使用 Angular CLI 初始化 Angular 项目
+>   - 简单体验 Angular
 
-![“起步”的图片搜索结果](http://www.qykh2009.com/upload/editor/1430983078905.jpg)
+![起步](http://www.qykh2009.com/upload/editor/1430983078905.jpg)
 
 目前，无论你使用什么前端框架，都必然要使用到各种 NodeJS 工具，Angular 也不例外。与其它框架不同，Angular 从一开始就走的“全家桶”式的设计思路，因此 @angular/cli 这款工具里面集成了日常开发需要使用的所有 Node 模块，使用 @angular/cli 可以大幅度降低搭建开发环境的难度。
 
-## 知识储备
+Angular CLI 类似于 Vue CLI，是 Angular 官方开发的一个脚手架工具，专门用来开发构建 Angular 应用程序。
 
-- HTML
-- CSS
-- JavaScript
-- EcmaScript 6
-- Typescript
-- 具有服务端开发经验更佳
+- Angular 应用程序初始化
+- 内置开发服务器
+- 代码变更浏览器自动刷新
+- 创建组件、指令、服务等集成工具
+- 测试和维护
+- ......
 
 ## Step 0. 安装依赖环境
 

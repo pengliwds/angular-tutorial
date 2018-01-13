@@ -6,7 +6,7 @@
   "author": "lipengzhou <lpzmail@163.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "docsify serve ./",
+    "dev": "docsify serve ./ --port 5080",
     "start": "npm run dev"
   },
   "devDependencies": {

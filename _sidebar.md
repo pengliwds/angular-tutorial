@@ -1,8 +1,7 @@
 - [Angular 简介](introduction)
 - [起步](getting-started)
-- [特性概览](architecure)
 - [一个 Angular 程序是如何启动的](app-started)
-- [Angular CLI](angular-cli)
+- [特性概览](architecure)
 - [TypeScript](typescript)
 - [组件](component)
 - [模板语法](template-syntax)
@@ -12,4 +11,5 @@
 - [基础案例：TodoMVC](todomvc-angular)
 - [路由处理](router)
 - [综合案例](integrated-case)
+- [Angular CLI](angular-cli)
 

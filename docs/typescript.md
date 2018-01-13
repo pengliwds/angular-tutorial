@@ -1,6 +1,6 @@
----
-typora-copy-images-to: media
----
+> 内容纲要
+> - 了解什么是 TypeScript
+> - TypeScript 基本语法
 
 ![1515492554669](media/1515492554669.png)
 
@@ -39,8 +39,6 @@ TypeScript 是 JavaScript 的超集，这意味着他支持所有的 JavaScript 
 静态类型：数据拥有类型，且仅有数据拥有类型。
 
 动态类型：数据拥有类型，存放数据的变量、表达式也拥有类型，且类型在编译时是固定的。
-
-
 
 下图是静态语言和动态语言的比较：
 
@@ -965,29 +963,32 @@ let add = (x: number, y: number): number => x + y
 
 ## 类型兼容性
 
-## 面向对象特性
-
-- 类
-- 访问控制符
-  - public 默认
-  - private 私有的
-  - protected 受保护的
-    - 可以在类内部及子类中被访问
-- 类的构造函数
-  - 实例化时调用，而且只调用一次
-- 类的继承
-  - extends
-  - super，可以访问父类的成员
-
 ## 模块
 
 ### 概念
 
 ### 模块通信：导出
 
+```typescript
+export default xxx
+
+export const foo: string = 'bar';
+export const bar: string = 'foo';
+```
+
 ### 模块通信：导入
 
+```typescript
+// 加载默认成员
+import xxx from '模块标识'
+
+// 按需加载模块成员
+import {foo, bar} from '模块'
+```
+
 ## 装饰器
+
+
 
 ## 类型定义文件（*.d.ts）
 

@@ -2,9 +2,7 @@
 
 # Angular 入门
 
-> 作者：李鹏周
-
-- 联系：lpzmail@163.com
+> 传智播客
 
 [GitHub](https://github.com/lipengzhou/nodejs-tutorial)
 [Get Started](README)
