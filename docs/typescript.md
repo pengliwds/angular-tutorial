@@ -986,17 +986,41 @@ import xxx from '模块标识'
 import {foo, bar} from '模块'
 ```
 
-## 装饰器
+## TypeScript 总结
 
-
-
-## 类型定义文件（*.d.ts）
-
-如何在 TypeScript 中使用到类似于 jQuery 之类的第三方框架。
-
-类型定义用来帮助开发者在 TypeScript 中使用已有的 JavaScript 的工具包，如 jQuery。
-
-- https://github.com/DefinitelyTyped/DefinitelyTyped
-- http://definitelytyped.org/
-
-## 课程总结
+- TypeScript 是什么
+- 变量声明
+  - var
+  - let
+  - const
+- 基本数据类型
+  - 布尔值 `boolean`
+  - 数字 `number`
+  - 字符串 `string`
+  - 数组 `number[]` 或者 `Array<number>`
+  - 元祖 `[number, string]`
+  - 对象 `object` ，了解即可
+  - 任意类型 `any`
+  - 函数空返回值 `void`
+  - `null` 和 `undefined`
+- 接口
+  - interface
+- 解构赋值
+  - 数组解构
+  - 对象解构
+- 展开操作符
+  - 展开数组
+  - 展开对象
+- 类
+  - 基本语法
+  - 构造函数
+  - 继承
+  - 属性修饰符
+  - 属性的 get 和 set
+- 函数
+  - 参数
+  - 箭头函数
+- for-of 循环
+- 模块
+  - 导出
+  - 导入
