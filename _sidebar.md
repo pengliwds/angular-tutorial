@@ -10,6 +10,6 @@
 - [和服务端交互](http)
 - [基础案例：TodoMVC](todomvc-angular)
 - [路由处理](router)
-- [综合案例](integrated-case)
+- [综合案例 - 联系人](integrated-case)
 - [Angular CLI](angular-cli)
 
